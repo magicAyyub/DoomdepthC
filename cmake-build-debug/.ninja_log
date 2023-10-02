@@ -1,0 +1,5 @@
+# ninja log v5
+2	69	7179867162779136	CMakeFiles/DoomdepthC.dir/main.c.obj	3fb7626cbfbccecc
+69	157	7179867163613930	DoomdepthC.exe	9b97c950995b169b
+0	184	7179869239411505	build.ninja	901ff004f2628049
+7	194	7179866992920994	CMakeFiles/DoomdepthC.dir/characters/character.c.obj	ca5f8e3ef6e71989
