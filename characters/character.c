@@ -8,14 +8,16 @@
 #include "character.h"
 
 #define DIRECTORY "../characters/"
+#define TEXT_DIRECTORY "../game_texts/"
 #define MONSTERS "monsters/"
 #define PLAYERS "players/"
 #define INITIAL 0
+#define CHARACTER_MAX_HEIGHT 25
 
 Monster *createMonster(int monsterId){
     Monster *monster =  malloc(sizeof(Monster));
-    monster->base.x = INITIAL;
-    monster->base.y = INITIAL;
+    monster->base.x = 130;
+    monster->base.y = 130;
     char *fileName = malloc(sizeof(char) * (strlen(MONSTERS) + strlen(DIRECTORY) + 1));
     strcpy(fileName, MONSTERS); // ex: "characters/monsters/"
     char *suffix = malloc(sizeof(char) * 8);
@@ -32,8 +34,8 @@ Monster *createMonster(int monsterId){
 
 Player *createPlayer(int playerId){
     Player *player =  malloc(sizeof(Player));
-    player->base.x = INITIAL;
-    player->base.y = INITIAL;
+    player->base.x = 5;
+    player->base.y = 5;
     char *fileName = malloc(sizeof(char) * (strlen(PLAYERS) + strlen(DIRECTORY) + 1));
     strcpy(fileName, PLAYERS); // ex: "characters/players/"
     char *suffix = malloc(sizeof(char) * 8);
@@ -42,6 +44,8 @@ Player *createPlayer(int playerId){
     readAsciiArtFromFile(fileName, &player->base);
     free(fileName);
     free(suffix);
+
+    initPlayerStats(player); // give a default stat to player
     return player;
 }
 
@@ -63,7 +67,7 @@ void readAsciiArtFromFile(const char *asciiFileName, BaseCharacter *baseOfCharac
 {
     char *fileName = malloc(sizeof(char) * (strlen(asciiFileName) + strlen(DIRECTORY) + 1));
     strcpy(fileName, DIRECTORY); // ex:  "characters/"
-    strcat(fileName, asciiFileName); // ex: "characters/monsters/2.txt.txt"
+    strcat(fileName, asciiFileName); // ex: "characters/monsters/2.txt"
 
     FILE *f = fopen(fileName, "rb");
 
@@ -88,6 +92,47 @@ void readAsciiArtFromFile(const char *asciiFileName, BaseCharacter *baseOfCharac
     free(fileName); //
     free(string); // free the memory allocated for string
 }
+
+void displayTextFromFile(const char *asciiFileName)
+{
+    char *fileName = malloc(sizeof(char) * (strlen(asciiFileName) + strlen(TEXT_DIRECTORY) + 1));
+    strcpy(fileName, TEXT_DIRECTORY);
+    strcat(fileName, asciiFileName);
+
+
+    FILE *f = fopen(fileName, "rb");
+
+    if (f == NULL) {
+        printf("File not found");
+        free(fileName);
+        return;
+    }
+
+    fseek(f, 0, SEEK_END); // seek to end of file
+    long count = ftell(f);  // get current file pointer (number of bytes)
+    fseek(f, 0, SEEK_SET);  // seek back to beginning of file
+
+    char *string = malloc(count + 1);
+    fread(string, 1, count, f);
+
+    string[count] = '\0';
+    char*text = malloc(sizeof(char) * count);
+    strcpy(text, string);
+    printf("%s",text);
+
+    fclose(f);
+    free(fileName); //
+    free(string); // free the memory allocated for string
+    free(text);
+
+}
+
+
+void displayCharacter(BaseCharacter character) {
+    // Print the character's ASCII art
+    printf("%s", character.asciiArt);
+}
+
 
 void freeMonster(Monster *monster){
     freeAsciiArt(&monster->base);

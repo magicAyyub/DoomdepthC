@@ -28,7 +28,7 @@ typedef struct{
 
 typedef struct{
     BaseCharacter base;
-    int health;
+    int health; //
     int attack;
     int defense;
     int speed;
@@ -46,12 +46,13 @@ typedef struct{
 }Player;
 
 
-
 Monster *createMonster(int monsterId);
 Player *createPlayer(int playerId);
 void initPlayerStats(Player *player);
 void generateRandomMonsterStats(Monster *monster);
 void readAsciiArtFromFile(const char *asciiFileName, BaseCharacter *baseOfCharacter);
+void displayTextFromFile(const char *asciiFileName);
+void displayCharacter(BaseCharacter character);
 void freeAsciiArt(BaseCharacter *baseOfCharacter);
 void freeMonster(Monster *monster);
 void freePlayer(Player *player);
