@@ -1,5 +1,16 @@
 # ninja log v5
-2	69	7179867162779136	CMakeFiles/DoomdepthC.dir/main.c.obj	3fb7626cbfbccecc
-69	157	7179867163613930	DoomdepthC.exe	9b97c950995b169b
-0	184	7179869239411505	build.ninja	901ff004f2628049
-7	194	7179866992920994	CMakeFiles/DoomdepthC.dir/characters/character.c.obj	ca5f8e3ef6e71989
+5	934	7208544475669785	CMakeFiles/DoomdepthC.dir/main.c.obj	7b0425411ab8c616
+4	613	7205824220908341	build.ninja	96209b67d90b582
+955	1061	7208544476907857	DoomdepthC.exe	47ab624ccb183557
+12	954	7208544475890184	CMakeFiles/DoomdepthC.dir/characters/character.c.obj	53e85c8d9d0d49f9
+152	270	7208538254735147	CMakeFiles/DoomdepthC.dir/map/map.c.obj	8ebcb90ca4e2438c
+14	151	7208538253502717	CMakeFiles/DoomdepthC.dir/fights/fights.c.obj	b21e6a3410e9aecc
+40	184	7208538253785718	CMakeFiles/DoomdepthC.dir/items/items.c.obj	3e02a09c11413259
+49	1261	7208538264638461	CMakeFiles/DoomdepthC.dir/save/save.c.obj	d7785a80eb83aa2
+32	1246	7208538264474279	CMakeFiles/DoomdepthC.dir/game/game.c.obj	e28996ef344152ba
+8	860	7203206095559079	CMakeFiles/DoomdepthC.dir/ansi_escapes/ansi_escapes.c.obj	2cce2479fc685871
+242	1730	7208490004237143	CMakeFiles/DoomdepthC.dir/console/console.c.obj	bfa28460d8c24c07
+6	1009	7208544879930947	CMakeFiles/DoomdepthC.dir/characters/character.c.obj	53e85c8d9d0d49f9
+1009	1114	7208544880950160	DoomdepthC.exe	47ab624ccb183557
+4	940	7208545398086647	CMakeFiles/DoomdepthC.dir/main.c.obj	7b0425411ab8c616
+941	1060	7208545399256825	DoomdepthC.exe	47ab624ccb183557

@@ -1,27 +1,41 @@
 #include<stdio.h>
-#include "characters/character.h"
+
+#include "console/console.h"
+#include "game/game.h"
 
 int main() {
-
-    displayTextFromFile("startBanner");
+    displayHomeBanner();
     short choice;
-    printf("\n\n1 - Start\n\n2 - Quit\n>> ");
-    scanf("%hd",&choice);
+    //Menu
+    printf("\n 1. Start Game\n 2. Load\n 3. Quit\n\n");
+    printf("Enter your choice: ");
+    while (1) {
+        scanf("%hd", &choice);
+        clear_stdin();
+        if (choice == 1) {
+            clear_screen();
+            Monsters monsters = getMonsters(2);
+            displayAllMonsters(&monsters);
+            printf("\n\n\n\n\n");
 
-    if (choice == 1){
-        // CREATE A PLAYER
-        Player *player = createPlayer(1);
-        displayCharacter(player->base);
+            display_hero();
 
-        // CREATE A MONSTER
-        Monster *monster = createMonster(1); // monsterId => ascii file name (ex: 1.txt)
-        displayCharacter(monster->base);
-
-        freePlayer(player);
-        freeMonster(monster);
+        } else if (choice == 2){
+            //
+        } else if (choice == 3){
+            printf("See you soon !");
+            break;
+        }
+        else {
+            printf("Invalid choice, please enter valid choice : ");
+            continue;
+        }
     }
-    else
-        printf("A TRES BIENTOT !");
     return 0;
-
 }
+
+
+
+
+
+

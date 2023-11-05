@@ -1,58 +1,96 @@
-//
-// Created by ayyub on 10/2.txt/2023.
-//
+// Structure pour représenter un monstre
+#ifndef CHARACTER_H
+#define CHARACTER_H
+
+#define MONSTERS "monsters/"
+#define PLAYERS "players/"
+#define DIRECTORY "../characters/"
+#define SPACE_BETWEEN_MONSTERS 10
+#define INITIAL_POSITION 5
+#define INITIAL_MONSTER_X 80
+
 typedef struct {
     int x;
     int y;
-    char *asciiArt;
+    char **skin;
 }BaseCharacter;
 
-typedef struct{
-    int id;
-    char *name;
-    char *description;
-    int price;
-    int attack_power;
-    int required_level;
-    int movement_speed;
-    int hit_number;
-}Weapon;
-
-typedef struct{
-    int id;
-    char *name;
-    char *description;
-    int price;
-    int protection;
-}Armor;
-
-typedef struct{
+typedef struct
+{
     BaseCharacter base;
-    int health; //
-    int attack;
+    char *name;
+    int life;
+    int min_attack;
+    int max_attack;
     int defense;
-    int speed;
-}Monster;
+    int gold_reward;
+} Monster;
 
-typedef struct{
-    BaseCharacter base;
-    int health;
-    int attack;
+typedef struct
+{
+    Monster *monsters;
+    int numberOfMonster;
+}Monsters;
+
+// Structure pour représenter un objet
+typedef struct
+{
+    int type;
+    int value;
+} Item;
+
+// Structure pour représenter une arme
+typedef struct
+{
+    char name[20];
+    int damage;
+    int attacks_per_turn;
+} Weapon;
+
+// Structure pour représenter une armure
+typedef struct
+{
+    char name[20];
     int defense;
-    int speed;
-    int level;
+} Armor;
+
+// Structure pour représenter un sort
+typedef struct {
+    char name[20];
+    int mana_cost;
+    int damage;
+} Spell;
+
+// Structure pour représenter un joueur
+typedef struct
+{
+    BaseCharacter base;
+    int life;
+    int attacks_per_turn;
+    int damage;
+    int defense;
+    int gold;
+    int mana;
+    int inventory_size;
+    int equipped_weapon;
+    int equipped_armor;
     Weapon weapon;
     Armor armor;
-}Player;
+} Player;
 
 
-Monster *createMonster(int monsterId);
-Player *createPlayer(int playerId);
-void initPlayerStats(Player *player);
-void generateRandomMonsterStats(Monster *monster);
-void readAsciiArtFromFile(const char *asciiFileName, BaseCharacter *baseOfCharacter);
-void displayTextFromFile(const char *asciiFileName);
-void displayCharacter(BaseCharacter character);
-void freeAsciiArt(BaseCharacter *baseOfCharacter);
-void freeMonster(Monster *monster);
-void freePlayer(Player *player);
+Monster generateMonster(int difficulty,unsigned int seed);
+void displayAllMonsters(Monsters *monsters);
+Player initializePlayer();
+void setCharacterPosition(BaseCharacter *base, int positionX, int positionY);
+void displayPlayer(Player *player);
+void displayMonster(Monster *monster);
+void freeMonsters(Monsters *monsters);
+int numberOfLineInMonsterAscii(const char *monster_name);
+void displayMonsterSkinLine(const char *monster_name, int maxLineLength, int lineIndex);
+void print_monsters(Monsters *monsters);
+void display_monster(Monster *monster);
+void displayMonsterLines(const char *monter_name);
+void display_hero();
+#endif // CHARACTER_H
+

@@ -28,7 +28,15 @@ Nous avons là, une première version qui permet la création de monstres avec d
 que la cration d'un joueur avec des statistiques par défaut qui changeront au fil du ou des combats.(Les armes et les armures existent bien mais ne sont pas encore pris en charges)
 
 ## Comment procéder ?
-A ce stade Il suffit de cloner le repository.
+A ce stade Il faut cloner le repository, Pour les personnes sur windows, le système ne prend pas directement en compte l'1NSI ESCAPE. Pour permettre à ANSI Escapes de fonctionner sur windows, il faut :
+	- Ouvrir l'éditeur de registre (registry editor ou éduteur de registre en français) 
+	- Déplier HKEY_CURRENT_USER
+	- Cliquer sur Console
+	- À droite faire un clic droit et créer un nouveau
+	- Nommer le registre VirtualTerminalLevel
+	- Cliquer dessus et changer le 0 par défaut en 1 
+Et voilà !!
+
 
 
 
