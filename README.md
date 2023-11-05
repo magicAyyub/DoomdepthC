@@ -24,7 +24,7 @@ le jeu plus les monstres deviennent difficiles à combattre. Ce projet est l'imp
 6.  Interface interactive
 
 ## Etat acuel
-Nous avons là, une première version qui permet la création de monstres avec des statistiques aléatoires ainsi 
+Nous avons là, une deuxième version avec une page d'accueil et un mini menu permettant de commencer le jeu ou le quitter sans oublier  la création de monstres avec des statistiques aléatoires ainsi 
 que la cration d'un joueur avec des statistiques par défaut qui changeront au fil du ou des combats.(Les armes et les armures existent bien mais ne sont pas encore pris en charges)
 
 ## Comment procéder ?
