@@ -9,6 +9,7 @@
 #define INITIAL_POSITION 5
 #define INITIAL_MONSTER_X 80
 
+
 typedef struct {
     int x;
     int y;
@@ -19,6 +20,7 @@ typedef struct
 {
     BaseCharacter base;
     char *name;
+    int total_life;
     int life;
     int min_attack;
     int max_attack;
@@ -30,6 +32,7 @@ typedef struct
 {
     Monster *monsters;
     int numberOfMonster;
+    int monsterDifficulty;
 }Monsters;
 
 // Structure pour représenter un objet
@@ -65,6 +68,7 @@ typedef struct {
 typedef struct
 {
     BaseCharacter base;
+    int total_life;
     int life;
     int attacks_per_turn;
     int damage;
@@ -80,17 +84,17 @@ typedef struct
 
 
 Monster generateMonster(int difficulty,unsigned int seed);
-void displayAllMonsters(Monsters *monsters);
+void displayAllMonstersSkin(Monsters *monsters);
 Player initializePlayer();
 void setCharacterPosition(BaseCharacter *base, int positionX, int positionY);
+Monsters regenerateMonsters(int difficulty);
 void displayPlayer(Player *player);
 void displayMonster(Monster *monster);
-void freeMonsters(Monsters *monsters);
 int numberOfLineInMonsterAscii(const char *monster_name);
 void displayMonsterSkinLine(const char *monster_name, int maxLineLength, int lineIndex);
 void print_monsters(Monsters *monsters);
 void display_monster(Monster *monster);
 void displayMonsterLines(const char *monter_name);
-void display_hero();
+void displayPlayerSkin(int life, int mana);
 #endif // CHARACTER_H
 

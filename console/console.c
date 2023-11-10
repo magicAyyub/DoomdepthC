@@ -18,22 +18,6 @@ void clear_stdin()
     while ((c = getchar()) != '\n' && c != EOF) {}
 }
 
-void clear_screen()
-{
-    printf("\e[1;1H\e[2J");
-}
-
-void clear_lines(int lines)
-{
-    for (int i = 0; i < lines; ++i)
-        printf("\x1b[1F\x1b[2K");
-}
-
-void clear_line(int line)
-{
-    printf("\x1b[%d;0H", line); // Place le curseur à la ligne spécifiée
-    printf("\x1b[2K"); // Efface la ligne actuelle
-}
 void wait_for_enter()
 {
     printf("\nPress [ENTER] to continue...");
@@ -63,3 +47,4 @@ int actualStringLength(const char *str)
 
     return length;
 }
+

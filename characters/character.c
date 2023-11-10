@@ -171,8 +171,11 @@ char *boss[] = {
         "                                             ||||| "};
 
 
+Monsters regenerateMonsters(int difficulty){
+    return initializeMonsters(difficulty);
+}
 
-Monsters getMonsters(int difficulty){
+Monsters initializeMonsters(int difficulty){
     Monsters monsters;
     srand(time(NULL));
     int numMonsters = rand() % MAX_MONSTERS + 1;
@@ -194,7 +197,11 @@ Monsters getMonsters(int difficulty){
     return monsters;
 }
 
-void displayAllMonsters(Monsters *monsters){
+void freeMonsters(Monster *monsterArray){
+    free(monsterArray);
+}
+
+void displayAllMonstersSkin(Monsters *monsters){
     // Determine the maximum line length
     int maxLineLength = actualStringLength(snake[0]);
 
@@ -238,14 +245,6 @@ void displayAllMonsters(Monsters *monsters){
     }
 }
 
-void freeMonsters(Monsters *monsters){
-    for (int i=0; i<monsters->numberOfMonster; i++){
-        free(monsters->monsters[i].name);
-    }
-    free(monsters->monsters);
-    free(monsters);
-
-}
 
 int numberOfLineInMonsterAscii(const char *monster_name){
     int numLines = 0;
@@ -296,6 +295,7 @@ Monster generateMonster(int difficulty,unsigned int seed)
     char *name = names[randomIndex];
     monster.name = name;
     monster.life = rand() % (BASE_STAT +1) + 1 ;
+    monster.total_life = monster.life;
     monster.min_attack = rand() % (BASE_STAT/10) + 1 ;
     monster.max_attack = rand() % (BASE_STAT/5) + 1;
     monster.defense = rand() % (BASE_STAT/10) + 1;
@@ -328,8 +328,10 @@ Player initializePlayer()
     Player player;
     player.base.x = INITIAL_POSITION;
     player.base.y = INITIAL_POSITION;
+    player.total_life = 100;
     player.life = 100;
-    player.attacks_per_turn = 1;
+    player.mana = 100;
+    player.attacks_per_turn = 3;
     player.damage = 20;
     player.defense = 10;
     player.inventory_size = 10;
@@ -339,7 +341,7 @@ Player initializePlayer()
     return player;
 }
 
-void display_hero()
+void displayPlayerSkin(int life, int mana)
 {
     // Print the hero
     int numLines1 = LEN(hero);
@@ -356,6 +358,10 @@ void display_hero()
         printf("%-*s", maxLineLength, hero[i]);
         printf("\n");
     }
+
+    update_bar(life,"Vie", GREEN);
+    printf("\n");
+    update_bar(mana,"Chakra",CYAN);
 }
 
 

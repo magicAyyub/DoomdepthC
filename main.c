@@ -3,33 +3,32 @@
 #include "console/console.h"
 #include "game/game.h"
 
+// cd '~\Documents\ESGI - BACHELOR\DoomdepthC - Beta\cmake-build-debug'
+
 int main() {
+
     displayHomeBanner();
-    short choice;
-    //Menu
-    printf("\n 1. Start Game\n 2. Load\n 3. Quit\n\n");
-    printf("Enter your choice: ");
-    while (1) {
-        scanf("%hd", &choice);
-        clear_stdin();
-        if (choice == 1) {
-            clear_screen();
-            Monsters monsters = getMonsters(2);
-            displayAllMonsters(&monsters);
-            printf("\n\n\n\n\n");
+    Monsters monsters = initializeMonsters(1);
+    Player player = initializePlayer();
 
-            display_hero();
+    printf("\n 1. Commencer une nouvelle partie\n 2. Restaurer une partie\n 3. Quitter");
+    makeSpace(2);
+    short choice = handleChoice(">> ",1,3);
 
-        } else if (choice == 2){
+    switch (choice) {
+        case 1:
+            clearScreen();
+            int isPlayerWin = playerTour(&monsters,&player);
+
+            if (isPlayerWin)
+                printf("Vous passez a la prochaine zone");
+            break;
+        case 2:
             //
-        } else if (choice == 3){
+            break;
+        case 3:
             printf("See you soon !");
             break;
-        }
-        else {
-            printf("Invalid choice, please enter valid choice : ");
-            continue;
-        }
     }
     return 0;
 }

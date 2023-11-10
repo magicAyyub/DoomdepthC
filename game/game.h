@@ -14,9 +14,15 @@
 #define MAP_HEIGHT 500
 
 
-void playTurn(Player *player, Monster monsters[],int numMonsters, int monsterDifficulty);
-Monsters getMonsters(int difficulty);
+void playerTurn(Player *player, Monsters *monsters);
+short handleChoice(const char *prompt, int min_value, int max_value);
+void deleteMonsterDied(Monster *monsters,int numberOfMonster,int monsterDiedPosition);
+void readjustMonsters(Monsters *monsters,int monsterDiedPosition);
+void makeSpace(int offset);
+Monsters initializeMonsters(int difficulty);
 void displayTextFromFile(const char *asciiFileName);
 void displayHomeBanner();
+int playerTour(Monsters *monsters, Player *player);
+
 
 #endif

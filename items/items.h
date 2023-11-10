@@ -10,5 +10,5 @@ Weapon generateWeapon();
 Armor generateArmor();
 void equipItem(Player *player, Item *item);
 void unequipItem(Player *player, Item *item);
-void displayInventory(Player player);
+void displayInventory(Player *player);
 #endif // ITEMS_H
