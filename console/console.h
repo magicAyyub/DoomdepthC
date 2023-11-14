@@ -61,7 +61,10 @@
 void sleep_(int milliseconds);
 void clear_stdin();
 int actualStringLength(const char *str);
-void wait_for_enter();
+void clearConsole();
+short handleChoice(const char *prompt, int min_value, int max_value);
+int handleYesOrNo(const char *prompt);
+void makeSpace(int offset);
 
 
 #endif //DOOMDEPTHC_CONSOLE_H

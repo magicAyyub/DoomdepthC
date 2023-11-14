@@ -7,7 +7,9 @@
 #include "../console/console.h"
 #include "../fights/fights.h"
 #include "../items/items.h"
-#define MAX_MONSTERS 4
+#include "../save/save.h"
+#include "../map/map.h"
+#define MAX_MONSTERS 3
 #define LEN(x) (sizeof(x) / sizeof((x)[0]))
 #define TEXT_DIRECTORY "../texts/"
 #define MAP_WIDTH 500
@@ -15,14 +17,18 @@
 
 
 void playerTurn(Player *player, Monsters *monsters);
-short handleChoice(const char *prompt, int min_value, int max_value);
-void deleteMonsterDied(Monster *monsters,int numberOfMonster,int monsterDiedPosition);
+void deleteMonsterDied(Monsters *monsters,int monsterDiedPosition);
 void readjustMonsters(Monsters *monsters,int monsterDiedPosition);
-void makeSpace(int offset);
 Monsters initializeMonsters(int difficulty);
 void displayTextFromFile(const char *asciiFileName);
 void displayHomeBanner();
-int playerTour(Monsters *monsters, Player *player);
+int playerTour(Monsters *monsters, Player *player, int isClean);
+void displayPlayerPreviousData(Player *player);
+int monstersTour(Monsters *monsters, Player *player);
+void displayGameOver();
+void displayWin();
+void play(Monsters *monsters, Player *player, Carte *carte);
+void displayAppearanceMessage(Monsters *monsters, int state);
 
 
 #endif

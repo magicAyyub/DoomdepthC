@@ -70,13 +70,18 @@ void unequipItem(Player *player, Item *item)
 void displayInventory(Player *player)
 {
     printf("Inventaire :\n");
-    if (player->equipped_weapon >= 0) {
-        printf("Arme équipée : %s (Dégâts : %d)\n", player->weapon.name, player->equipped_weapon);
-    }
-    if (player->equipped_armor >= 0) {
-        printf("Armure équipée : %s (Défense : %d)\n", player->armor.name, player->equipped_armor);
-    }
-    printf("Or : %d\n", player->gold);
+    if (player->equipped_weapon >= 0)
+        printf("> Arme equipee : %s (Dégâts : %d)\n", player->weapon.name, player->equipped_weapon);
+    else
+        printf("> Aucune arme equipee\n");
+
+    if (player->equipped_armor >= 0)
+        printf("> Armure equipee : %s (Défense : %d)\n", player->armor.name, player->equipped_armor);
+    else
+        printf("> Aucune armure portee\n");
+
+    printf("> Or : %d\n", player->gold);
+
 }
 
 

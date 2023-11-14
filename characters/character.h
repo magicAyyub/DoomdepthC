@@ -87,6 +87,7 @@ Monster generateMonster(int difficulty,unsigned int seed);
 void displayAllMonstersSkin(Monsters *monsters);
 Player initializePlayer();
 void setCharacterPosition(BaseCharacter *base, int positionX, int positionY);
+void freeMonsters(Monster *monsterArray);
 Monsters regenerateMonsters(int difficulty);
 void displayPlayer(Player *player);
 void displayMonster(Monster *monster);

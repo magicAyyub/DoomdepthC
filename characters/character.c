@@ -267,25 +267,34 @@ int numberOfLineInMonsterAscii(const char *monster_name){
 
 Monster generateMonster(int difficulty,unsigned int seed)
 {
-    int BASE_STAT;
+    int BASE_STAT = 5;
     switch(difficulty){
         case 1:
-            BASE_STAT = 15;
+            BASE_STAT = 5;
             break;
         case 2:
-            BASE_STAT = 30;
+            BASE_STAT = 15;
             break;
         case 3:
-            BASE_STAT = 45;
+            BASE_STAT = 25;
             break;
         case 4:
-            BASE_STAT = 60;
+            BASE_STAT = 45;
             break;
         case 5:
-            BASE_STAT = 75;
+            BASE_STAT = 65;
+            break;
+        case 6:
+            BASE_STAT = 85;
+            break;
+        case 7:
+            BASE_STAT = 105;
+            break;
+        case 8:
+            BASE_STAT = 115;
             break;
         default:
-            BASE_STAT = 15;
+            BASE_STAT = BASE_STAT*difficulty;
             break;
     }
 
@@ -296,10 +305,10 @@ Monster generateMonster(int difficulty,unsigned int seed)
     monster.name = name;
     monster.life = rand() % (BASE_STAT +1) + 1 ;
     monster.total_life = monster.life;
-    monster.min_attack = rand() % (BASE_STAT/10) + 1 ;
-    monster.max_attack = rand() % (BASE_STAT/5) + 1;
-    monster.defense = rand() % (BASE_STAT/10) + 1;
-    monster.gold_reward = rand() % (BASE_STAT/5) + 1;
+    monster.min_attack = rand() % (BASE_STAT/4) + 1 ;
+    monster.max_attack = rand() % (BASE_STAT) + 1;
+    monster.defense = rand() % (BASE_STAT/4) + 1;
+    monster.gold_reward = rand() % (BASE_STAT/4) + 1;
     return monster;
 }
 
@@ -328,12 +337,12 @@ Player initializePlayer()
     Player player;
     player.base.x = INITIAL_POSITION;
     player.base.y = INITIAL_POSITION;
-    player.total_life = 100;
-    player.life = 100;
-    player.mana = 100;
+    player.total_life = 7;
+    player.life = 7;
+    player.mana = 10;
     player.attacks_per_turn = 3;
-    player.damage = 20;
-    player.defense = 10;
+    player.damage = 7;
+    player.defense = 7;
     player.inventory_size = 10;
     player.equipped_weapon = -1; // Aucune arme équipée
     player.equipped_armor = -1;  // Aucune armure équipée

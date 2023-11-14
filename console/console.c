@@ -18,10 +18,14 @@ void clear_stdin()
     while ((c = getchar()) != '\n' && c != EOF) {}
 }
 
-void wait_for_enter()
-{
-    printf("\nPress [ENTER] to continue...");
-    clear_stdin();
+
+// Function to clear the console screen
+void clearConsole() {
+#ifdef _WIN32
+    system("cls");  // For Windows
+#else
+    system("clear");  // For Unix-like systems (Linux, macOS)
+#endif
 }
 
 int actualStringLength(const char *str)
@@ -46,5 +50,44 @@ int actualStringLength(const char *str)
     }
 
     return length;
+}
+
+short handleChoice(const char *prompt, int min_value, int max_value){
+    printf("%s",prompt);
+    short choice;
+    while(1){
+        scanf("%hd", &choice);
+        if (choice >= min_value && choice <= max_value)
+            return choice;
+        else
+            printf("Choix invalide, veuillez reessayer : ");
+    }
+
+}
+
+int handleYesOrNo(const char *prompt){
+    printf("%s",prompt);
+    while (1) {
+        char answer;
+        scanf(" %c", &answer);  // Note the space before %c to consume any leading whitespace
+
+        answer = tolower(answer);
+
+        if (answer == 'o')
+            return 1;
+        else if (answer == 'n')
+            return 0;
+        else if (answer == 'q')
+            return -1;
+        else
+            printf("Choix invalide, veuillez reessayer : ");
+
+    }
+
+}
+
+void makeSpace(int offset){
+    for (int i=0; i<offset; i++)
+        printf("\n");
 }
 

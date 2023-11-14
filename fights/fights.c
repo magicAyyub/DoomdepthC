@@ -7,34 +7,35 @@
 #include "fights.h"
 #include "../game/game.h"
 
-void attackOnPlayer(Monsters monsters, Player *player)
+int attackOnPlayer(Monsters *monsters, Player *player)
 {
-    for (int i = 0; i < monsters.numberOfMonster; i++)
+    for (int i = 0; i < monsters->numberOfMonster; i++)
     {
+        int damage = (rand() % (monsters->monsters[i].max_attack - monsters->monsters[i].min_attack + 1)) + monsters->monsters[i].min_attack;
+
+        hurtPlayer(monsters->monsters[i].name,player, damage);
+
+        int life = getPercentage(player->life,player->total_life);
+        int mana = getPercentage(player->mana,10);
+
         if (player->life <= 0)
         {
-            printf("Le joueur a été vaincu. Fin du jeu.\n");
-            exit(0);
+            return 1;
         }
-
-        int damage = (rand() % (monsters.monsters[i].max_attack - monsters.monsters[i].min_attack + 1)) + monsters.monsters[i].min_attack;
-        player->life -= damage;
-        printf("Le monstre %d inflige %d dégâts au joueur.\n", i + 1, damage);
+        displayPlayerSkin(life, mana);
     }
+    return 0;
 }
 
 void attackOnMonster(Player *player,Monsters *monsters) {
     int monsterNum = monsters->numberOfMonster - 1;
-    int life;
 
-    if (monsterNum != 0) {
-        printf("Choisissez un monstre a attaquer entre %s0%s et %s%d%s:\n",TC_CYN,TC_WHT,TC_CYN, monsters->numberOfMonster - 1,RESET);
+    if (monsterNum >= 1) {
+        printf("--> Choisissez un monstre a attaquer entre %s0%s et %s%d%s:\n",TC_CYN,TC_WHT,TC_CYN, monsters->numberOfMonster - 1,RESET);
         makeSpace(1);
         for (int i = 0; i < monsters->numberOfMonster; i++) {
-            printf("%d pour %s%s%s%s (Vie: %d)\n", i,TC_BG_WHT,BLACK, monsters->monsters[i].name,RESET,monsters->monsters[i].life);
-            life = getPercentage(monsters->monsters[i].life, monsters->monsters[i].total_life);
-            update_bar(life,"",GREEN);
-            makeSpace(2);
+            printf(" %d. %s%s%s%s\n", i,TC_BG_WHT,BLACK, monsters->monsters[i].name,RESET);
+            makeSpace(1);
         }
         short choice = handleChoice(">> ", 0, monsters->numberOfMonster - 1);
 
@@ -43,33 +44,43 @@ void attackOnMonster(Player *player,Monsters *monsters) {
             damage = 0;
 
         hurtMonster(&monsters->monsters[choice], damage);
-        printf("Vous infligez %s%d degat %s%sa %s%s!\n", TC_CYN,damage,TC_WHT, RESET,monsters->monsters[choice].name,RESET);
 
         if (monsters->monsters[choice].life <= 0) {
             printf("\n %sLe monstre %s%s%s est mort!%s\n", TC_YEL, RESET,monsters->monsters[choice].name, TC_YEL, RESET);
+            rewardPlayer(player, monsters->monsters[choice].gold_reward);
             readjustMonsters(monsters,choice);
         }
     } else {
-        printf("%s%s%s\n", TC_BG_CYN, monsters->monsters[0].name,RESET);
         makeSpace(1);
-        life = getPercentage(monsters->monsters[0].life, monsters->monsters[0].total_life);
-        update_bar(life,"Vie",TC_CYN);
-        makeSpace(2);
         int damage = player->damage - monsters->monsters[0].defense;
         if (damage < 0)
             damage = 0;
 
         hurtMonster(&monsters->monsters[0], damage);
-        printf("Vous infligez %s%d degat %s%sa %s%s!\n", TC_CYN,damage,TC_WHT, RESET,monsters->monsters[0].name,RESET);
+
         if (monsters->monsters[0].life <= 0) {
             printf("\n %sLe monstre %s%s%s est mort!%s\n", TC_YEL,RESET, monsters->monsters[0].name,TC_YEL,RESET);
+            rewardPlayer(player, monsters->monsters[0].gold_reward);
             readjustMonsters(monsters,0);
         }
     }
 }
 
+void hurtPlayer(const char *monster_name, Player *player, int damage){
+    player->life -= damage;
+    sleep_(800);
+    printf("\n%s~~Le monstre %s%s%s vous inflige %s%d degats%s.%s\n",TC_YEL, RESET, monster_name,RESET, TC_CYN, damage, TC_YEL,RESET);
+}
+
 void hurtMonster(Monster *monster, int damage){
     monster->life -= damage;
+    sleep_(800);
+    printf("%s-->%s Vous infligez %s%d degat %s%sa %s%s!\n", RED, RESET, TC_CYN,damage,TC_WHT, RESET,monster->name,RESET);
+}
+
+void rewardPlayer(Player *player, int gold){
+    player->gold += gold;
+    printf("\n %s~~ Vous gagnez %d piece d'or%s\n", TC_MAG, gold,RESET);
 }
 
 Spell generateSpell() {
@@ -94,8 +105,8 @@ void castSpell(Player *player, Spell spell) {
 
 void regenerateMana(Player *player) {
     player->mana += 10; // Restauration de 10 points de mana par tour
-    if (player->mana > 100) {
-        player->mana = 100; // Limite la mana à 100
+    if (player->mana > 10) {
+        player->mana = 10; // Limite la mana à 100
     }
 }
 void display_bar(){
@@ -114,13 +125,17 @@ void update_bar(int percent_done, const char *msg, const char *color){
     }
     printf(RESET);
     for (int i = 0; i < PROGRESS_BAR_WIDTH-num_chars; i++){
+        printf(RED);
         printf("-");
+        sleep_(30);
     }
+    printf(RESET);
     printf(" %d%%", percent_done);
     fflush(stdout);
 }
 
 int getPercentage(int current, int total){
-    return (current/total)*100;
+    int percentage = (int)(((float)current/(float)total)*100);
+    return percentage;
 }
 

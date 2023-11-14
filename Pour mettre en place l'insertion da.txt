@@ -1,0 +1,3 @@
+Pour mettre en place l'insertion dans une base de donnée mysql grâce à c, il faut :
+- installer mysql-connector-c sur le site officiel de Mysql en fonction de son sytème
+- Ajouter le chemiun vers l'en-tête de fichier pour pouvoir intéragir avec Mysql

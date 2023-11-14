@@ -3,48 +3,42 @@
 //
 #include <stdio.h>
 #include "save.h"
-void saveGame(Player player, Monster monsters[], int numMonsters, int currentZone) {
-    FILE* file = fopen("savegame.txt", "w");
-    if (file == NULL) {
-        printf("Impossible d'ouvrir le fichier de sauvegarde.\n");
-        return;
-    }
+void saveGame(Player *player) {
 
-    struct SaveData {
-        Player player;
-        Monster monsters[MAX_MONSTERS];
-        int numMonsters;
-        int currentZone;
-    } saveData;
+    if (savePlayerData(player, "player.dat") != 0)
+        fprintf(stderr, "Error saving player data.\n");
+    printf("%s Votre partie a bien ete sauvegarde%s",TC_YEL,RESET);
+}
 
-    saveData.player = player;
-    saveData.numMonsters = numMonsters;
-    saveData.currentZone = currentZone;
-    for (int i = 0; i < numMonsters; i++) {
-        saveData.monsters[i] = monsters[i];
-    }
+Player loadGame(Player *player) {
 
-    fwrite(&saveData, sizeof(struct SaveData), 1, file);
-    fclose(file);
-
-    printf("Partie sauvegardée avec succès.\n");
+    if (loadPlayerData(player, "player.dat") != 0)
+        printf("Une erreur s'est produite lors du chargement des donnees du joueur.\n");
+    else
+        return *player;
 }
 
 
-SaveData loadGame() {
-    FILE* file = fopen("savegame.txt", "r");
-    SaveData saveData;
-
-    if (file == NULL) {
-        printf("Aucune partie sauvegardée n'a été trouvée.\n");
-        saveData.player = initializePlayer();
-        return saveData;
+int savePlayerData(Player *playerData, const char *filename) {
+    FILE *file = fopen(filename, "wb");
+    if (file != NULL) {
+        fwrite(playerData, sizeof(Player), 1, file);
+        fclose(file);
+    } else {
+        printf("Erreur lors de l'ouverture du fichier pour sauvegarde.\n");
+        return 1;
     }
+    return 0; // Successfully saved player data
+}
 
-    fread(&saveData, sizeof(SaveData), 1, file);
-    fclose(file);
-
-    printf("Partie chargée avec succès.\n");
-
-    return saveData;
+int loadPlayerData(Player *playerData, const char *filename) {
+    FILE *file = fopen(filename, "rb");
+    if (file != NULL) {
+        fread(playerData, sizeof(Player), 1, file);
+        fclose(file);
+    } else {
+        printf("Erreur lors de l'ouverture du fichier pour lecture.\n");
+        return 1;
+    }
+    return 0; // Successfully loaded player data
 }

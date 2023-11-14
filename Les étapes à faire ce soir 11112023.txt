@@ -1,0 +1,35 @@
+Les étapes à faire ce soir 11/11/2023
+
+> Cas où tous les monstres sont mort (tour du joueur) :
+
+	- Afficher "You win" avec l'ascii
+	- Récupérer la valeur de "monsterDifficulty" dans la structure Monsters 
+	- Libérer la mémoire allouée pour créer le tableau des monstres
+	- Regénérer de nouveaux monstres plus fort 
+	- Mettre à jour monsterDifficulty dans la nouvelle structure
+	- Regénérer la vie et le chakra du joueur
+	- Changer de zone au niveau de la map (chaque zone a une difficulté propre à elle)
+	- Demander si le joueur veux sauvegarder sa partie
+
+	> Dans le cas où il veut sauvegarder :
+
+		- Enregistrer toutes les information dans la base de donnée Mysql
+
+	> Dans le cas contraire:
+
+		- Continuer
+
+> Dans le cas contraire (tour des monstres) :
+
+	- Mettre en place l'attaque des monstres sur le joueur
+	> Cas où le joueur ne survit pas aux attaques :
+
+		- Afficher "Game Over" avec l'ascii
+		- Demander au joueur s'il veux réjouer 
+
+		> Cas où il veut réjouer :
+
+	> Dans le cas contraire :
+		
+		
+		
