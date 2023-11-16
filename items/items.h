@@ -4,19 +4,16 @@
 #ifndef ITEMS_H
 #define ITEMS_H
 #include "../characters/character.h"
+#define numberOfItems  4
 
 
-// Structure pour représenter les pouvoirs magiques
- typedef struct{
-    char symbole; // Symbole associé au pouvoir sur la carte
-    int impact;   // Impact sur les points de vie des monstres
-    int prix;     // Prix en pièces d'or
-} Pouvoir;
-
-
+Store initializeStore();
 Weapon generateWeapon();
 Armor generateArmor();
 void equipItem(Player *player, Item *item);
 void unequipItem(Player *player, Item *item);
 void displayInventory(Player *player);
+void displayStoreMenu();
+void buyItem(Player *player, Store *store, int choice);
+void freeStore(Store *store);
 #endif // ITEMS_H

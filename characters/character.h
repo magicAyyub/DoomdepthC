@@ -48,13 +48,15 @@ typedef struct
     char name[20];
     int damage;
     int attacks_per_turn;
-} Weapon;
+    int value;
+}  Weapon;
 
 // Structure pour représenter une armure
 typedef struct
 {
     char name[20];
     int defense;
+    int value;
 } Armor;
 
 // Structure pour représenter un sort
@@ -81,6 +83,11 @@ typedef struct
     Weapon weapon;
     Armor armor;
 } Player;
+
+typedef struct{
+    Weapon *weapons; // magasin d'armes
+    Armor *armors; // magasin d'armures
+}Store;
 
 
 Monster generateMonster(int difficulty,unsigned int seed);

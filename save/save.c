@@ -1,6 +1,3 @@
-//
-// Created by ayyub on 10/22/2023.
-//
 #include <stdio.h>
 #include "save.h"
 void saveGame(Player *player) {
@@ -28,7 +25,7 @@ int savePlayerData(Player *playerData, const char *filename) {
         printf("Erreur lors de l'ouverture du fichier pour sauvegarde.\n");
         return 1;
     }
-    return 0; // Successfully saved player data
+    return 0;
 }
 
 int loadPlayerData(Player *playerData, const char *filename) {
@@ -40,5 +37,5 @@ int loadPlayerData(Player *playerData, const char *filename) {
         printf("Erreur lors de l'ouverture du fichier pour lecture.\n");
         return 1;
     }
-    return 0; // Successfully loaded player data
+    return 0;
 }

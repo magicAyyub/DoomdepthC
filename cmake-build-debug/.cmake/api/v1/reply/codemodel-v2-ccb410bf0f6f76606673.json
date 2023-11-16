@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/Ayoub/Documents/ESGI - BACHELOR/DoomdepthC - Beta/cmake-build-debug",
-		"source" : "C:/Users/Ayoub/Documents/ESGI - BACHELOR/DoomdepthC - Beta"
+		"build" : "C:/Users/Ayoub/Documents/ESGI - BACHELOR/DoomdepthC/cmake-build-debug",
+		"source" : "C:/Users/Ayoub/Documents/ESGI - BACHELOR/DoomdepthC"
 	},
 	"version" : 
 	{

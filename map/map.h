@@ -5,6 +5,8 @@
 #define MAP_H
 #include "../characters/character.h"
 #include "../console/console.h"
+#include "../items/items.h"
+
 #define LARGEUR 50
 #define HAUTEUR 50
 
@@ -28,7 +30,7 @@ typedef struct {
 
 Carte initialiseCarte();
 void afficherCarte(Carte *carte) ;
-void changerDeZone(Carte *carte, Player *player);
+void changerDeZone(Carte *carte, Player *player, Store *store);
 void cartography(Carte *carte);
 
 #endif

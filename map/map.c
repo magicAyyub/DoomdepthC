@@ -6,7 +6,6 @@
 #include <string.h>
 #include <time.h>
 #include "map.h"
-#include "../items/items.h"
 
 Carte initialiseCarte(){
     Carte carte;
@@ -49,8 +48,7 @@ void afficherCarte(Carte *carte) {
     }
 }
 
-
-void changerDeZone(Carte *carte, Player *player) {
+void changerDeZone(Carte *carte, Player *player, Store *store) {
     if (carte->zone < 8) {
         carte->zone++;
         printf("\t\n%sBien joue ! Vous avez atteint la zone %d%s : ",TC_YEL, carte->zone, RESET);
@@ -69,10 +67,15 @@ void changerDeZone(Carte *carte, Player *player) {
             printf("++++++++++++++++++++++++++\n\n");
             break;
         case 2:
-            //
+            sleep_(100);
+            displayStoreMenu();
+            short item = handleChoice(" ",1,3);
+            if (item != 3)
+                buyItem(player,store,item);
+            else
+                printf("compris");
             break;
         case 3:
-            //
             break;
     }
 
@@ -82,9 +85,9 @@ void changerDeZone(Carte *carte, Player *player) {
         printf("bye !");
         exit(0);
     }
-
-
 }
+
+
 void cartography(Carte *carte) {
     printf("Cartographie :\n");
 

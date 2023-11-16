@@ -27,7 +27,7 @@ void displayPlayerPreviousData(Player *player);
 int monstersTour(Monsters *monsters, Player *player);
 void displayGameOver();
 void displayWin();
-void play(Monsters *monsters, Player *player, Carte *carte);
+void play(Monsters *monsters, Player *player, Carte *carte, Store *store);
 void displayAppearanceMessage(Monsters *monsters, int state);
 
 

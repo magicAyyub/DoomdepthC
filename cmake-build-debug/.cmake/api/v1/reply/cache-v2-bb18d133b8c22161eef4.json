@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/Ayoub/Documents/ESGI - BACHELOR/DoomdepthC - Beta/cmake-build-debug"
+			"value" : "c:/Users/Ayoub/Documents/ESGI - BACHELOR/DoomdepthC/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -431,7 +431,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/Ayoub/Documents/ESGI - BACHELOR/DoomdepthC - Beta/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "C:/Users/Ayoub/Documents/ESGI - BACHELOR/DoomdepthC/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -503,7 +503,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/Ayoub/Documents/ESGI - BACHELOR/DoomdepthC - Beta"
+			"value" : "C:/Users/Ayoub/Documents/ESGI - BACHELOR/DoomdepthC"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1119,7 +1119,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/Ayoub/Documents/ESGI - BACHELOR/DoomdepthC - Beta/cmake-build-debug"
+			"value" : "C:/Users/Ayoub/Documents/ESGI - BACHELOR/DoomdepthC/cmake-build-debug"
 		},
 		{
 			"name" : "DoomdepthC_IS_TOP_LEVEL",
@@ -1143,19 +1143,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/Ayoub/Documents/ESGI - BACHELOR/DoomdepthC - Beta"
-		},
-		{
-			"name" : "MySQL_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for MySQL."
-				}
-			],
-			"type" : "PATH",
-			"value" : "MySQL_DIR-NOTFOUND"
+			"value" : "C:/Users/Ayoub/Documents/ESGI - BACHELOR/DoomdepthC"
 		},
 		{
 			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",

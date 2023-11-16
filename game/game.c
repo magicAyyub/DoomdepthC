@@ -1,7 +1,3 @@
-//
-// Created by ayyub on 10/22/2023.
-//
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -74,8 +70,8 @@ void playerTurn(Player *player, Monsters *monsters)
             attackOnMonster(player, monsters);
             break;
         case 2:
-            //
-            break;
+            printf("bye");
+            exit(0);
         case 3:
             displayInventory(player);
             break;
@@ -136,7 +132,8 @@ void displayHomeBanner()
     printf("\n");
 }
 
-void displayGameOver(){
+void displayGameOver()
+{
     printf("\n");
 
     printf(RED);
@@ -151,7 +148,8 @@ void displayGameOver(){
     printf("\n");
 }
 
-void displayWin(){
+void displayWin()
+{
     printf("\n");
 
     printf(GREEN);
@@ -166,7 +164,8 @@ void displayWin(){
     printf("\n");
 }
 
-void displayAppearanceMessage(Monsters *monsters, int state){
+void displayAppearanceMessage(Monsters *monsters, int state)
+{
     if (state == 0) {
         if (monsters->numberOfMonster > 1)
             printf("\n\t %s Des monstres apparaissent !%s\n\n", TC_YEL, RESET);
@@ -177,7 +176,8 @@ void displayAppearanceMessage(Monsters *monsters, int state){
     }
 }
 
-void displayPlayerPreviousData(Player *player){
+void displayPlayerPreviousData(Player *player)
+{
     printf("Bienvenue parmi nous, votre inventaire durant votre partie precedente s'affiche juste en bas\n");
     printf("\n+++++++++++++++++++++\n");
     displayInventory(player);
@@ -185,30 +185,34 @@ void displayPlayerPreviousData(Player *player){
 }
 
 
-void play(Monsters *monsters, Player *player, Carte *carte){
+void play(Monsters *monsters, Player *player, Carte *carte, Store *store)
+{
     int clean = 0;
     while(1) {
         displayAppearanceMessage(monsters,clean);
         afficherCarte(carte);
         int isPlayerWin = playerTour(monsters, player, clean);
 
-        if (isPlayerWin) {
+        if (isPlayerWin)
+        {
             displayWin();
             freeMonsters(monsters->monsters);
 
             printf("Voulez-vous continuer et sauvegarder plus tard ? (o/n)\n");
             int isContinue = handleYesOrNo(">> ");
 
-            if (isContinue) {
+            if (isContinue)
+            {
                 int difficulty = monsters->monsterDifficulty + 1;
                 *monsters = regenerateMonsters(difficulty);
                 monsters->monsterDifficulty = difficulty;
-                changerDeZone(carte,player);
+                changerDeZone(carte,player,store);
             } else {
                 printf("sauvegarder maintenant (o/n) q pour quitter\n");
                 int isSave = handleYesOrNo(">> ");
 
-                if (isSave == 1) {
+                if (isSave == 1)
+                {
                     saveGame(player);
                     printf("Voulez-vous continuer ?(o/n)\n");
                     isContinue = handleYesOrNo(">> ");
@@ -216,7 +220,7 @@ void play(Monsters *monsters, Player *player, Carte *carte){
                         int difficulty = monsters->monsterDifficulty + 1;
                         *monsters = regenerateMonsters(difficulty);
                         monsters->monsterDifficulty = difficulty;
-                        changerDeZone(carte,player);
+                        changerDeZone(carte,player,store);
                     } else {
                         printf("bye !");
                         exit(0);
@@ -225,14 +229,16 @@ void play(Monsters *monsters, Player *player, Carte *carte){
                     int difficulty = monsters->monsterDifficulty + 1;
                     *monsters = regenerateMonsters(difficulty);
                     monsters->monsterDifficulty = difficulty;
-                    changerDeZone(carte, player);
+                    changerDeZone(carte, player,store);
                 }
                 else {
                     printf("bye !");
                     exit(0);
                 }
             }
-        } else {
+        }
+        else
+        {
             clean = 1;
             int isPlayerDied = monstersTour(monsters, player);
 

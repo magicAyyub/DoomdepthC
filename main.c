@@ -12,25 +12,29 @@ int main() {
     Monsters monsters = initializeMonsters(1);
     Player player = initializePlayer();
     Carte carte = initialiseCarte();
+    Store store = initializeStore();
 
     printf("\n 1. Commencer une nouvelle partie\n 2. Restaurer une partie\n 3. Quitter");
     makeSpace(2);
     short choice = handleChoice(">> ",1,3);
     clearConsole();
-    switch (choice) {
+
+    switch (choice)
+    {
         case 1:
-            play(&monsters, &player, &carte);
+            play(&monsters, &player, &carte, &store);
             break;
         case 2:
             player = loadGame(&player);
             displayPlayerPreviousData(&player);
             sleep_(2000);
-            play(&monsters, &player, &carte);
+            play(&monsters, &player, &carte, &store);
             break;
         case 3:
             printf("Bye !");
             break;
     }
+    freeStore(&store);
     return 0;
 }
 
