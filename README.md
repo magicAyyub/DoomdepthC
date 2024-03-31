@@ -1,42 +1,53 @@
 # DoomdepthC
 
 ## Introduction
-Doomdepths est un jeu mobile créé par Kacper Jankowski. Dans ce jeu il est question de combattre des
-monstres pour obtenir de l'équipement qui permettra par la suite d'avancer dans le jeu, plus l'on va loin dans
-le jeu plus les monstres deviennent difficiles à combattre. Ce projet est l'implémentation d'une version allégée de Doomdepths.
+Doomdepths is a mobile game created by Kacper Jankowski. In this game, you have to fight monsters to obtain equipment that will enable you to progress further in the game. The further into the game you go, the more difficult the monsters become to fight. This project is the implementation of a lighter version of Doomdepths.
 
-## Fonctionnalités principales
-1. Génération de monstres aléatoires
-2. Attaque du joueur
-3. Attaque des monstres
-4. Fonctionnement des armes
-5. Fonctionnement des armures
-6. Sauvegarde
-7. Système de Sorts
-8. Cartographie
+## Main features
+1. Random monster generation
+2. Player attack
+3. Monster attack
+4. Weapon operation
+5. Armor operation
+6. Saving
+7. Spell system
+8. Cartography
 
-## Fonctionnalités Bonus
-1. Système de Niveaux
-2. Magasin d'Équipement
-3. Quêtes Secondaires
-4. Boss de Niveau
-5. Événements Aléatoires
-6.  Interface interactive
+## Bonus Features
+1. Level system
+2. Equipment Store
+3. Secondary Quests
+4. Boss Level
+5. Random Events
+6.  Interactive interface
 
-## Etat acuel
-Nous avons là, une deuxième version avec une page d'accueil et un mini menu permettant de commencer le jeu ou le quitter sans oublier  la création de monstres avec des statistiques aléatoires ainsi 
-que la cration d'un joueur avec des statistiques par défaut qui changeront au fil du ou des combats.(Les armes et les armures existent bien mais ne sont pas encore pris en charges)
+### Prerequisites
 
-## Comment procéder ?
-A ce stade Il faut cloner le repository, Pour les personnes sur windows, le système ne prend pas directement en compte l'1NSI ESCAPE. Pour permettre à ANSI Escapes de fonctionner sur windows, il faut :
-	- Ouvrir l'éditeur de registre (registry editor ou éduteur de registre en français) 
-	- Déplier HKEY_CURRENT_USER
-	- Cliquer sur Console
-	- À droite faire un clic droit et créer un nouveau
-	- Nommer le registre VirtualTerminalLevel
-	- Cliquer dessus et changer le 0 par défaut en 1 
-Et voilà !!
+Before you begin, make sure you have the following prerequisites ready:
+- A sense of adventure 🌟
 
+### Getting Started
 
+1. **Clone the Repository:** Start by cloning the DoomdepthC repository to your local machine. You can do this by running the following command in your terminal or command prompt:
+   ```bash
+   git clone https://github.com/your_username/DoomdepthC.git
+   ```
 
+2. **Navigate to the Project Directory:** Once the cloning process is complete, navigate to the project directory using the `cd` command:
+   ```bash
+   cd DoomdepthC
+   ```
 
+3. **Access the Executable:** The executable file of the game is located in the `cmake-build-debug` directory. Navigate to this directory using the following command:
+   ```bash
+   cd cmake-build-debug
+   ```
+
+4. **Launch the Game:** Finally, you can start the game by running the executable file. Use the following command to launch DoomdepthC:
+   ```bash
+   ./DoomdepthC.exe
+   ```
+
+### Ready to Conquer?
+
+With DoomdepthC up and running, you're all set to embark on your thrilling quest. Grab your trusty axe, brace yourself for adventure, and prepare to conquer the depths of Doomdepths!
